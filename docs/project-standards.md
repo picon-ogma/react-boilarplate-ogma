@@ -43,3 +43,5 @@ To enforce this, you can use ESLint:
   },
 ],
 ```
+
+Naming convention depends on a lot of things e.g. project requirements, team-mates, awareness, etc. If you are working alone, pick one naming convention and use consistently across the application. If you are working in a team, consult with team mates and finalize the convention and ensure everyone is following the same practices. **DO NOT I REPEAT DO NOT MIX NAMING CONVENTIONS!**

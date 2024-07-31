@@ -8,14 +8,16 @@ export const AuthenticatedLayout = () => {
 
   return (
     <DashboardLayout>
-      <Suspense fallback={<div>Your awesome spinner component goes here</div>}>
-        <ErrorBoundary
-          key={location.pathname}
-          fallback={<div>Your error fallback component goes here</div>}
+      <ErrorBoundary
+        key={location.pathname}
+        fallback={<div>Your error fallback component goes here</div>}
+      >
+        <Suspense
+          fallback={<div>Your awesome spinner component goes here</div>}
         >
           <Outlet />
-        </ErrorBoundary>
-      </Suspense>
+        </Suspense>
+      </ErrorBoundary>
     </DashboardLayout>
   );
 };

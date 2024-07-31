@@ -5,13 +5,19 @@ import PropTypes from "prop-types";
 
 export const AppShell = ({ children }) => {
   return (
-    <Suspense fallback={<div>Your awesome spinner component goes here</div>}>
-      <ErrorBoundary
-        fallback={() => <div>Your error fallback component goes here</div>}
-      >
-        <HelmetProvider>{children}</HelmetProvider>
-      </ErrorBoundary>
-    </Suspense>
+    <ErrorBoundary
+      FallbackComponent={() => (
+        <div>Your error fallback component goes here</div>
+      )}
+    >
+      <HelmetProvider>
+        <Suspense
+          fallback={<div>Your awesome spinner component goes here</div>}
+        >
+          {children}
+        </Suspense>
+      </HelmetProvider>
+    </ErrorBoundary>
   );
 };
 

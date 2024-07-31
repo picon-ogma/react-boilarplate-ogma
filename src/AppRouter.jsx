@@ -57,6 +57,13 @@ const createRouter = () => {
           },
         },
         {
+          path: "products",
+          lazy: async () => {
+            const { ProductsRoute } = await import("./routes/app/products");
+            return { Component: ProductsRoute };
+          },
+        },
+        {
           path: "",
           lazy: async () => {
             const { DashboardRoute } = await import("./routes/app/dashboard");

@@ -2,24 +2,10 @@ import axios from "axios";
 import { env } from "../utilities/env";
 
 /**
- *
- * @param {import ('axios').InternalAxiosRequestConfig} config
- * @returns {import ('axios').InternalAxiosRequestConfig}
+ * @type {import('axios').AxiosRequestConfig} httpClientConfig
  */
-function authRequestInterceptor(config) {
-  return config;
-}
-
-const http = axios.create({
+const httpClientConfig = {
   baseURL: env.API_URL,
-});
+};
 
-http.interceptors.request.use(authRequestInterceptor);
-http.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => Promise.reject(error)
-);
-
-export { http };
+export const httpClient = axios.create(httpClientConfig);

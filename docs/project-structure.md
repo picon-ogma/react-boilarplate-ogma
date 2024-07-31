@@ -5,17 +5,19 @@ Most of the code lives in the `src` folder and looks something like this:
 ```sh
 src
 |
++-- api               # share api queries(react-query)/slices(rtk-query) used across the application
+|
 +-- assets            # assets folder can contain all the static files such as images, fonts, etc.
 |
 +-- components        # shared components used across the entire application
 |
-+-- features          # feature based modules
++-- features          # feature based modules for the application
 |
 +-- guards            # shared route guards used across the entire application
 |
 +-- hooks             # shared hooks used across the entire application
 |
-+-- layouts           # shared layouts used across the entire application
++-- layouts           # shared layouts used across the entire application. think of a layouts as shared UI between one or more routes. it provides a placeholder for the dynamic content and that could be a {children} or router <Outlet />
 |
 +-- libs              # reusable libraries pre-configured for the application. e.g. i18n, http (axios), firebase, aws, etc
 |
@@ -27,15 +29,15 @@ src
 |
 +-- styles            # global styles, colors, mixins, variables. (Optional)
 |
-+-- themes            # global theme variables used accorss the application. e.g. dark-theme, light-theme, high-contrast (for a11y), etc!
++-- themes            # global theme variables used across the application. e.g. dark-theme, light-theme, high-contrast (for a11y), etc!
 |
 +-- utilities         # shared utilities used across the application. e.g. utilities/patterns.js, utilities/date-time.js, utilities/env.js, etc!
 |
-+-- App.jsx           # Wrapper around app-shell and router and injected into root node
++-- App.jsx           # Wrapper around application shell and router and injected into root node
 |
-+-- AppRouter.jsx     # Configures application routes with lazy loading
++-- AppRouter.jsx     # Configures application routes with lazy loading, loaders, error elements.
 |
-+-- AppShell.jsx      # Configures required providers and renders the browser-router. You should use this file to configure global providers, contexts, etc!
++-- AppShell.jsx      # Configures required providers and renders the dynamic {children}. You should use this file to configure global providers, contexts, etc!
 |
 +-- main.jsx          # Entrypoint of the application
 ```
@@ -64,7 +66,6 @@ NOTE: You don't need all of these folders for every feature. Only include the on
 In the past, it was recommended to use barrel files (index.js/ts exports everything) to export all the files from a feature. However, it can cause issues for Vite to do tree shaking and can lead to performance issues. Therefore, it is recommended to import the files directly.
 
 You might also want to enforce unidirectional codebase architecture. This means that the code should flow in one direction, from shared parts of the code to the application. This is a good practice to follow as it makes the codebase more predictable and easier to understand.
-
 
 By following these practices, you can ensure that your codebase is well-organized, scalable, and maintainable. This will help you and your team to work more efficiently and effectively on the project.
 This approach can also make it easier to apply similar architecture to apps built with Next.js, Remix.

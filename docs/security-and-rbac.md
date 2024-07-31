@@ -6,7 +6,6 @@ For a full list of security risks, check [OWASP](https://owasp.org/www-project-t
 
 User information should be treated as a central piece of data accessible throughout the application. If you are already using `react-query/redux-query`, consider using it for storing user data as well. Alternatively, you can leverage React context with hooks or opt for a third-party client-side state management library to efficiently manage user state across your application.
 
-
 ### Authorization
 
 Authorization is the process of verifying whether a user has permission to access a specific resource within the application.
@@ -19,11 +18,11 @@ In a role-based authorization model, access to resources is determined by defini
 
 ```jsx
 <Authorization allowedRoles={[UserRoles.ADMIN]}>
-    <DeleteUserAccount/>
+  <DeleteUserAccount />
 </Authorization>
 ```
 
-Instead of the **Authorization** component, you can use the **useAuthorization** enforce RBAC for certain situations. e.g. 
+Instead of the **Authorization** component, you can use the **useAuthorization** hook to enforce RBAC and filter/manipulate data based on user role. e.g.
 
 ```jsx
 export function SomeComponent() {
@@ -31,16 +30,16 @@ export function SomeComponent() {
   const navigationItems = [
     { name: 'Dashboard', to: '.' },
     { name: 'Discussions', to: './discussions' },
-    checkAccess({ allowedRoles: [ROLES.ADMIN] }) && {
+    checkAccess({ allowedRoles: [UserRoles.ADMIN] }) && {
       name: 'Users',
       to: './users',
     },
   ].filter(Boolean);
 
-  return (
-    ...
-  )
+  return <>...</>;
 }
 ```
 
-**Authorization** and **useAuthorization** are just bare-bone implementations. You can modify the and extend the implementation according to your project requirements.
+## Additional Notes:
+
+**Authorization** and **useAuthorization** are just bare-bone implementations to give you the idea. You can modify and extend the implementation according to your project requirements. But make sure to avoid if/else in every component for RBAC. You can also implement PBAC (Policy Based Access Control) using the same **Authorization** component as well. If you need any help with RBAC/PBAC, feel free to reach out to me!
